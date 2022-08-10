@@ -1,6 +1,6 @@
 import React from "react";
 
-const ImageInput = () => {
+const ImageInput = ({ getImage }) => {
   return (
     <main className="flex  items-center justify-center  font-sans">
       <label
@@ -25,7 +25,12 @@ const ImageInput = () => {
           Upload or darg & drop your file SVG, PNG, JPG or GIF.
         </p>
 
-        <input id="dropzone-file" type="file" className="hidden" />
+        <input
+          id="dropzone-file"
+          type="file"
+          onChange={getImage}
+          className="hidden"
+        />
       </label>
     </main>
   );

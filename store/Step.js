@@ -12,6 +12,9 @@ const steps = createSlice({
       if (state.current === 1) return;
       state.current--;
     },
+    updateStep(state, action) {
+      state.current = action.payload;
+    },
   },
 });
 export const stepActions = steps.actions;

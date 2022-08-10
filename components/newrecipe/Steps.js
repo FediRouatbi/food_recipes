@@ -1,12 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
-const Steps = () => {
+const Steps = ({ updateCurrentStep }) => {
   const step = useSelector((state) => state.step.current);
 
   const activeClass = "bg-gray-100 border-blue-500 text-blue-500";
   return (
     <div className="flex mx-auto flex-wrap mb-6">
-      <a className={`${step === 1 && activeClass} step`}>
+      <a
+        className={`${step === 1 && activeClass} step`}
+        onClick={() => updateCurrentStep(1)}
+      >
         <svg
           fill="none"
           stroke="currentColor"
@@ -20,7 +23,10 @@ const Steps = () => {
         </svg>
         STEP 1
       </a>
-      <a className={`${step === 2 && activeClass} step`}>
+      <a
+        className={`${step === 2 && activeClass} step`}
+        onClick={() => updateCurrentStep(2)}
+      >
         <svg
           fill="none"
           stroke="currentColor"
@@ -34,7 +40,10 @@ const Steps = () => {
         </svg>
         STEP 2
       </a>
-      <a className={`${step === 3 && activeClass} step`}>
+      <a
+        className={`${step === 3 && activeClass} step`}
+        onClick={() => updateCurrentStep(3)}
+      >
         <svg
           fill="none"
           stroke="currentColor"
@@ -49,7 +58,10 @@ const Steps = () => {
         </svg>
         STEP 3
       </a>
-      <a className={`${step === 4 && activeClass} step`}>
+      <a
+        className={`${step === 4 && activeClass} step`}
+        onClick={() => updateCurrentStep(4)}
+      >
         <svg
           fill="none"
           stroke="currentColor"

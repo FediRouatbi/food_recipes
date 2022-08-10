@@ -1,18 +1,5 @@
 import React from "react";
-import { stepActions } from "../../store/Step";
-import { useDispatch, useSelector } from "react-redux";
-const FormButtons = () => {
-  const dispatch = useDispatch();
-  const step = useSelector((state) => state.step.current);
-
-  const nextPage = (e) => {
-    e.preventDefault();
-    dispatch(stepActions.next());
-  };
-  const previousPage = (e) => {
-    e.preventDefault();
-    dispatch(stepActions.previous());
-  };
+const FormButtons = ({ step, nextPage, previousPage }) => {
   return (
     <div className=" flex justify-between  mt-auto">
       {step !== 1 && (

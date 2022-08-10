@@ -1,18 +1,30 @@
-import React from "react";
+import React, { useRef } from "react";
 
-const Ingredient = ({ num, removeItem, id }) => {
+const Ingredient = ({ num, removeItem, ingredient, getName, getQuantity }) => {
   return (
     <div className="flex gap-2 items-center">
       <div className="flex">
         <span className="px-4 py-2  text-base rounded-l text-white  bg-blue-500">
           {num}
         </span>
-        <input type="text" placeholder="Item Name" className="rounded-r-lg" />
+        <input
+          onChange={(e) => getName(ingredient.id, e.target.value)}
+          value={ingredient.name}
+          type="text"
+          placeholder="Item Name"
+          className="rounded-r-lg"
+        />
       </div>
-      <input type="text" placeholder="Quantity" className="rounded-r-lg" />
+      <input
+        value={ingredient.quantity}
+        type="text"
+        placeholder="Quantity"
+        className="rounded-r-lg"
+        onChange={(e) => getQuantity(ingredient.id, e.target.value)}
+      />
       {num !== 1 && (
         <svg
-          onClick={removeItem.bind(null, id)}
+          onClick={removeItem.bind(null, ingredient.id)}
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"

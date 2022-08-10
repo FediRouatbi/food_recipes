@@ -1,6 +1,6 @@
 import React from "react";
 
-const Method = ({ num, removeMethod, id }) => {
+const Method = ({ num, removeMethod, method, updateMethod }) => {
   return (
     <div className="flex gap-2 items-center ">
       <div className="flex items-start">
@@ -15,12 +15,14 @@ const Method = ({ num, removeMethod, id }) => {
           name="comment"
           rows="2"
           cols="40"
+          value={method.text}
+          onChange={(e) => updateMethod(method.id, e.target.value)}
         ></textarea>
       </div>
 
       {num !== 1 && (
         <svg
-          onClick={removeMethod.bind(null, id)}
+          onClick={removeMethod.bind(null, method.id)}
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
