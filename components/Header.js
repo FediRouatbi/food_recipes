@@ -1,9 +1,11 @@
-import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import cookingBook from "./img/cooking-book.png";
+import { useRouter } from "next/dist/client/router";
 const Header = () => {
+  const router = useRouter();
+  const pathname = router.pathname;
   return (
     <nav className="bg-white dark:bg-gray-800  shadow  ">
       <div className="max-w-[90rem] mx-auto px-8">
@@ -20,37 +22,47 @@ const Header = () => {
 
           <div className=" flex items-center text-2xl ">
             <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4 gap-3">
-                <Link
-                  className="text-gray-300  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-md font-medium"
-                  href="/"
-                >
-                  Home
+              <div className="ml-10 flex items-baseline space-x-4 gap-3 ">
+                <Link className="" href="/">
+                  <span
+                    className={`link ${pathname === "/" && "text-gray-800"}`}
+                  >
+                    Home
+                  </span>
                 </Link>
-                <Link
-                  className="text-gray-800 dark:text-white  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-md font-medium"
-                  href="/recipes"
-                >
-                  Recipes
+                <Link href="/recipes">
+                  <span
+                    className={`link ${
+                      pathname === "/recipes" && "text-gray-800"
+                    }`}
+                  >
+                    Recipes
+                  </span>
                 </Link>
-                <Link
-                  className="text-gray-300  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-md font-medium"
-                  href="/home"
-                >
-                  Content
+                <Link href="/home">
+                  <span
+                    className={`link ${
+                      pathname === "/home" && "text-gray-800"
+                    }`}
+                  >
+                    Content
+                  </span>
                 </Link>
-                <Link
-                  className="text-gray-300  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-md font-medium"
-                  href="/contact"
-                >
-                  Contact
+                <Link href="/contact">
+                  <span
+                    className={`link ${
+                      pathname === "/contact" && "text-gray-800"
+                    }`}
+                  >
+                    Contact
+                  </span>
                 </Link>
               </div>
             </div>
           </div>
 
           <div className="-mr-2 flex md:hidden">
-            <button className="text-gray-800 dark:text-white hover:text-gray-300 inline-flex items-center justify-center p-2 rounded-md focus:outline-none">
+            <button className="link">
               <svg
                 width="20"
                 height="20"

@@ -4,7 +4,7 @@
 module.exports = {
   mode: "jit",
   darkMode: "className",
-  purge: [
+  content: [
     "./pages/**/*.js",
     "./components/**/*.js",
     "./public/**/*.html",
@@ -13,5 +13,5 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require("flowbite/plugin")],
+  plugins: [],
 };

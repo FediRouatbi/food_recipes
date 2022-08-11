@@ -2,8 +2,8 @@ import React, { useRef } from "react";
 
 const Ingredient = ({ num, removeItem, ingredient, getName, getQuantity }) => {
   return (
-    <div className="flex gap-2 items-center">
-      <div className="flex">
+    <div className="flex gap-2 items-center flex-wrap ">
+      <div className="flex ">
         <span className="px-4 py-2  text-base rounded-l text-white  bg-blue-500">
           {num}
         </span>
@@ -12,14 +12,14 @@ const Ingredient = ({ num, removeItem, ingredient, getName, getQuantity }) => {
           value={ingredient.name}
           type="text"
           placeholder="Item Name"
-          className="rounded-r-lg"
+          className="rounded-r-lg w-[106px] md:w-full"
         />
       </div>
       <input
         value={ingredient.quantity}
         type="text"
         placeholder="Quantity"
-        className="rounded-r-lg"
+        className="rounded-r-lg w-24 md:w-fit"
         onChange={(e) => getQuantity(ingredient.id, e.target.value)}
       />
       {num !== 1 && (

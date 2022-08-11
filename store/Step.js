@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialState = { current: 1 };
+const initialState = { current: 1, showModal: false };
 const steps = createSlice({
   name: "steps",
   initialState,
@@ -14,6 +14,12 @@ const steps = createSlice({
     },
     updateStep(state, action) {
       state.current = action.payload;
+    },
+    openModal(state) {
+      state.showModal = true;
+    },
+    closeModal(state) {
+      state.showModal = false;
     },
   },
 });

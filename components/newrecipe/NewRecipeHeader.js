@@ -13,22 +13,18 @@ const NewRecipeHeader = ({ getAboutRecipe, getRecipeName, recipe }) => {
           className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2  focus:border-transparent"
           placeholder="Recipe Name"
           id="RecipeName"
-          required
           value={recipe.name}
         />
       </div>
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1 ">
         <label className=" text-xl font-semibold" htmlFor="info">
           About Recipe :
         </label>
         <textarea
           onChange={(e) => getAboutRecipe(e.target.value)}
-          className="flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 rounded-lg text-base focus:outline-none focus:ring-2  focus:border-transparent"
+          className=" max-h-full max-w-full appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 rounded-lg text-base focus:outline-none focus:ring-2  focus:border-transparent"
           id="info"
           placeholder="Enter your comment"
-          rows="5"
-          cols="40"
-          required
           value={recipe.about}
         ></textarea>
       </div>

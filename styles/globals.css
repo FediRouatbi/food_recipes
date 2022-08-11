@@ -2,9 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 @tailwind screens;
+
 @layer components {
   .step {
     @apply cursor-pointer sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2  font-medium inline-flex items-center leading-none border-gray-200 hover:text-gray-900;
+  }
+  .link {
+    @apply cursor-pointer text-gray-300 text-2xl font-bold hover:text-gray-800  px-3 py-2 rounded-md;
   }
 }
 *,

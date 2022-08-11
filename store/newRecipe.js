@@ -9,8 +9,8 @@ const initialState = {
   timeToCook: "",
   hours: 0,
   minutes: 0,
-  type: null,
-  difficulty: null,
+  type: "Tunisian cuisine",
+  difficulty: "Easy",
 };
 const newRecipe = createSlice({
   name: "newRecipe",
@@ -58,7 +58,8 @@ const newRecipe = createSlice({
     },
     updateMethods(state, action) {
       state.methods = state.methods.map((item) => {
-        if (item.id === action.payload.id) item.text = action.payload.text;
+        if (item.id === action.payload.id)
+          item.text = action.payload.text;
         return item;
       });
     },
