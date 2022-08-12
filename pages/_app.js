@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { Provider } from "react-redux";
 import store from "../store/index";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const router = useRouter();
   const pages = ["/login", "forgotPassword", "/signup", "/404"];
   const hidden = pages.includes(router.pathname);

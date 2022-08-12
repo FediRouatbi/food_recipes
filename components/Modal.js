@@ -1,15 +1,28 @@
 import React from "react";
+import { useEffect } from "react";
 import Portal from "./Portal";
+import { useRouter } from "next/router";
 const Modal = ({ closeModal }) => {
-  document.body.style.overflow = "hidden";
+  const router = useRouter();
+
+  console.log("file: Modal.js ~ line 8 ~ Modal ~ router", router);
+
   const closeShowModal = () => {
-    document.body.style.overflow = "visible";
     closeModal();
+    router.push("/");
   };
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "visible";
+    };
+  });
   return (
     <>
       <h1 className=" fixed w-full h-screen overflow-hidden bg-black/70 backdrop-blur-sm inset-0 z-10  "></h1>
-      <div className="absolute flex justify-center items-center inset-0 z-20 text-3xl text-white w-full h-full">
+      <div className="fixed flex justify-center items-center inset-0 z-20 text-3xl text-white w-full h-full">
         <div className="shadow-lg rounded-2xl p-4 bg-white dark:bg-gray-800 w-64 m-auto">
           <div className="w-full h-full text-center">
             <div className="flex h-full flex-col justify-between">
