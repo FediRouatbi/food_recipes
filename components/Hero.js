@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 const Hero = () => {
   const currentUser = useSelector((state) => state.user.user);
-  console.log(currentUser);
+
   return (
     <section className="text-gray-600 body-font">
       <div className="container mx-auto justify-between max-w-[90rem] h-screen flex px-8 py-16 md:flex-row flex-col items-center">

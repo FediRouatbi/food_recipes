@@ -5,8 +5,6 @@ import { useRouter } from "next/router";
 const Modal = ({ closeModal }) => {
   const router = useRouter();
 
-  console.log("file: Modal.js ~ line 8 ~ Modal ~ router", router);
-
   const closeShowModal = () => {
     closeModal();
     router.push("/");

@@ -80,7 +80,7 @@ const newRecipe = createSlice({
     },
     updateMintues(state, action) {
       state.minutes = action.payload;
-      console.log(action.payload);
+   
       if (!state.hours && !action.payload) state.timeToCook = "";
       if (!action.payload) state.timeToCook = `${state.hours} Hours`;
       else

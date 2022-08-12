@@ -24,7 +24,7 @@ const Newrecipe = () => {
     dispatch(stepActions.closeModal());
   };
   const nextPage = (e) => {
-    console.log(e);
+   
     e.preventDefault();
     dispatch(stepActions.next());
   };

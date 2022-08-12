@@ -7,7 +7,9 @@ const Login = () => {
     try {
       await loginUser(username, email, password);
       pushTo("/newrecipe");
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
   const googleLoginHandler = async () => {
     try {
@@ -35,3 +37,7 @@ const Login = () => {
 };
 
 export default Login;
+
+export function getStaticProps() {
+  return { props: {} };
+}
