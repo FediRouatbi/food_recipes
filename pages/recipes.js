@@ -8,8 +8,6 @@ const recipes = () => {
         <div className="-my-8 divide-y-2 divide-gray-100">
           <Recipe />
           <Recipe />
-          <Recipe />
-          <Recipe />
         </div>
         <Pager />
       </div>

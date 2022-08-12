@@ -2,7 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import img from "./img/hero.jpg";
+import { useSelector } from "react-redux";
+
 const Hero = () => {
+  const currentUser = useSelector((state) => state.user.user);
+  console.log(currentUser);
   return (
     <section className="text-gray-600 body-font">
       <div className="container mx-auto justify-between max-w-[90rem] h-screen flex px-8 py-16 md:flex-row flex-col items-center">
@@ -18,7 +22,7 @@ const Hero = () => {
             hexagon try-hard chambray.
           </p>
           <div className="flex justify-center">
-            <Link href="newrecipe">
+            <Link href={currentUser ? "newrecipe" : "login"}>
               <button className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
                 New Recipe
               </button>

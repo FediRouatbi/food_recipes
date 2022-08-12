@@ -1,6 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { username: null, email: null, image: null };
+const initialState = {
+  about: "",
+  username: null,
+  email: null,
+  image: null,
+  user: false,
+};
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -9,6 +15,7 @@ const userSlice = createSlice({
       state = initialState;
     },
     login(state, action) {
+      state.user = true;
       if (action.payload?.username) state.username = action.payload.username;
       if ((state.email, action.payload?.email))
         state.email = action.payload.email;

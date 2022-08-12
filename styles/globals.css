@@ -18,6 +18,14 @@
   margin: 0;
   box-sizing: border-box;
 }
-html {
+html,
+body {
+  height: 100%;
   scroll-behavior: smooth;
+  min-height: 100%;
+}
+#__next {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }

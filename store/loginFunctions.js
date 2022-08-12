@@ -8,9 +8,11 @@ import {
 import auth from "../store/firebaseConfig";
 import store from "./index";
 import { userActions } from "./user";
+
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
-export const loginHandler = async (username, email, password) => {
+console.log(auth);
+export const loginUser = async (username, email, password) => {
   try {
     const resp = await signInWithEmailAndPassword(auth, email, password);
     await updateProfile(auth.currentUser, {
@@ -18,11 +20,11 @@ export const loginHandler = async (username, email, password) => {
     });
     store.dispatch(userActions.login({ username, email }));
   } catch (error) {
-    console.log(error);
+    throw new Error(error);
   }
 };
 
-export const githubLoginHandler = async () => {
+export const githubLogin = async () => {
   try {
     const credential = await signInWithPopup(auth, githubProvider);
     const user = credential.user;
@@ -31,10 +33,10 @@ export const githubLoginHandler = async () => {
     const image = user.photoURL;
     store.dispatch(userActions.login({ username, email, image }));
   } catch (error) {
-    console.log(error);
+    throw new Error(error);
   }
 };
-export const googleLoginHandler = async () => {
+export const googleLogin = async () => {
   try {
     const credential = await signInWithPopup(auth, googleProvider);
     const user = credential.user;
@@ -44,6 +46,6 @@ export const googleLoginHandler = async () => {
 
     store.dispatch(userActions.login({ username, email, image }));
   } catch (error) {
-    console.log(error);
+    throw new Error(error);
   }
 };

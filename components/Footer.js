@@ -3,8 +3,7 @@ import React from "react";
 import cookingBook from "./img/cooking-book.png";
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 body-font ">
-      
+    <footer className="bg-gray-100 body-font mt-auto ">
       <div className="container px-5 py-6 mx-auto flex items-center justify-center sm:flex-row flex-col">
         <div className="flex items-center">
           <Image src={cookingBook} height={50} width={50} alt="cooking book" />

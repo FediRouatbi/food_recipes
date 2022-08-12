@@ -7,7 +7,13 @@ import store from "../store/index";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const router = useRouter();
-  const pages = ["/login", "forgotPassword", "/signup", "/404"];
+  const pages = [
+    "/login",
+    "forgotPassword",
+    "/signup",
+    "/404",
+    "/forgetpassword",
+  ];
   const hidden = pages.includes(router.pathname);
 
   return (

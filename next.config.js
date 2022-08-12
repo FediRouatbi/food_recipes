@@ -9,6 +9,8 @@ const nextConfig = {
       "placeimg.com",
       "flowbite.com",
       "www.tailwind-kit.com",
+      "lh3.googleusercontent.com",
+      "avatars.githubusercontent.com",
     ], //Domain of image host
   },
 };
