@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 } from "uuid";
 const initialState = {
+  id: v4(),
   image: null,
   name: "",
   about: "",
@@ -58,8 +59,7 @@ const newRecipe = createSlice({
     },
     updateMethods(state, action) {
       state.methods = state.methods.map((item) => {
-        if (item.id === action.payload.id)
-          item.text = action.payload.text;
+        if (item.id === action.payload.id) item.text = action.payload.text;
         return item;
       });
     },
@@ -80,12 +80,13 @@ const newRecipe = createSlice({
     },
     updateMintues(state, action) {
       state.minutes = action.payload;
-   
+
       if (!state.hours && !action.payload) state.timeToCook = "";
       if (!action.payload) state.timeToCook = `${state.hours} Hours`;
       else
         state.timeToCook = `${state.hours} Hours and ${action.payload} Minutes`;
     },
+    clear: () => initialState,
   },
 });
 

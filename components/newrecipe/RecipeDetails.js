@@ -3,7 +3,7 @@ import { SiCodechef } from "react-icons/si";
 import { MdTimer } from "react-icons/md";
 const checkValidite = (data) => {
   if (data.text?.trim()) return true;
-  if (data.quantity?.trim() && data.name?.trim()) return true;
+  if (data.name?.trim()) return true;
   else return false;
 };
 const RecipeDetails = ({ recipe }) => {

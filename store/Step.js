@@ -21,6 +21,9 @@ const steps = createSlice({
     closeModal(state) {
       state.showModal = false;
     },
+    reset() {
+      return initialState;
+    },
   },
 });
 export const stepActions = steps.actions;

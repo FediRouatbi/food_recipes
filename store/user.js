@@ -1,26 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  about: "",
-  username: null,
-  email: null,
-  image: null,
-  user: false,
+  user: {
+    uid: null,
+    displayName: null,
+    email: null,
+    phoneNumber: null,
+    photoURL: null,
+  },
 };
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
     logout(state) {
-      state = initialState;
+      state.user = null;
     },
     login(state, action) {
-      state.user = true;
-      if (action.payload?.username) state.username = action.payload.username;
-      if ((state.email, action.payload?.email))
-        state.email = action.payload.email;
-      if ((state.image, action.payload?.image))
-        state.image = action.payload.image;
+      state.user = {
+        uid: action.payload.uid,
+        displayName: action.payload.displayName,
+        phoneNumber: action.payload.phoneNumber,
+        photoURL: action.payload.photoURL,
+        email: action.payload.email,
+      };
     },
   },
 });

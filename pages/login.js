@@ -1,11 +1,15 @@
 import LoginForm from "../components/LoginForm";
-import { loginUser, githubLogin, googleLogin } from "../store/loginFunctions";
+import {
+  loginUser,
+  githubLogin,
+  googleLogin,
+} from "../store/firebaseFunctions";
 import { useRouter } from "next/router";
 const Login = () => {
   const pushTo = useRouter().push;
-  const loginHandler = async (username, email, password) => {
+  const loginHandler = async (email, password) => {
     try {
-      await loginUser(username, email, password);
+      await loginUser(email, password);
       pushTo("/newrecipe");
     } catch (error) {
       console.log(error);

@@ -4,15 +4,13 @@ import Link from "next/link";
 const LoginForm = (props) => {
   const { loginHandler, googleLoginHandler, githubLoginHandler } = props;
 
-  const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const signInNewuser = (e) => {
     e.preventDefault();
-    const name = nameRef.current.value;
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    loginHandler(name, email, password);
+    loginHandler(email, password);
   };
   return (
     <div className="  mx-auto mt-20  flex items-center    flex-col w-full max-w-md px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10 ">

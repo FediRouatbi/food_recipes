@@ -1,16 +1,28 @@
 import React, { useRef } from "react";
 import Link from "next/link";
 import { FaUserAlt } from "react-icons/fa";
-const SignupForm = () => {
+import { useRouter } from "next/router";
+import { useState } from "react";
+import Spinner from "./Spinner";
+const SignupForm = ({ signupUser }) => {
+  const [loading, setLoading] = useState(false);
+  const route = useRouter();
   const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
-  const signInNewuser = (e) => {
-    e.preventDefault();
-    const name = nameRef.current.value;
-    const email = emailRef.current.value;
-    const password = passwordRef.current.value;
-    loginHandler(name, email, password);
+  const signup = async (e) => {
+    try {
+      setLoading(true);
+      e.preventDefault();
+      const name = nameRef.current.value;
+      const email = emailRef.current.value;
+      const password = passwordRef.current.value;
+      await signupUser(name, email, password);
+      route.replace("/");
+    } catch (error) {
+      console.log(error);
+    }
+    setLoading(false);
   };
   return (
     <div className="  mx-auto mt-20  flex items-center    flex-col w-full max-w-md px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10 ">
@@ -19,7 +31,7 @@ const SignupForm = () => {
       </div>
 
       <div className="mt-8">
-        <form action="#" autoComplete="off">
+        <form action="#" autoComplete="off" onSubmit={signup}>
           <div className="flex flex-col mb-2">
             <div className="flex relative ">
               <span className="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
@@ -82,8 +94,9 @@ const SignupForm = () => {
           <div className="flex w-full">
             <button
               type="submit"
-              className="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+              className="py-2 px-4 flex justify-center items-center gap-2  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
             >
+              {loading && <Spinner />}
               Signup
             </button>
           </div>

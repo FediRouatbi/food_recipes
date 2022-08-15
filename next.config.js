@@ -8,6 +8,7 @@ const nextConfig = {
     STORAGE_BUCKET: process.env.STORAGE_BUCKET,
     MESSAGING_SENDER_ID: process.env.MESSAGING_SENDER_ID,
     APP_ID: process.env.APP_ID,
+    MONGO_URL: process.env.MONGO_URL,
   },
   swcMinify: true,
   images: {
@@ -19,6 +20,7 @@ const nextConfig = {
       "www.tailwind-kit.com",
       "lh3.googleusercontent.com",
       "avatars.githubusercontent.com",
+      "firebasestorage.googleapis.com",
     ], //Domain of image host
   },
 };

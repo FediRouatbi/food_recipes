@@ -1,7 +1,16 @@
 import React, { useRef } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { resetPassword } from "../store/firebaseFunctions";
 const Forgetpassword = () => {
+  const route = useRouter();
   const emailRef = useRef();
+  const resetPass = async (e) => {
+    e.preventDefault();
+
+    await resetPassword(emailRef.current.value);
+    route.replace("/login");
+  };
   return (
     <div className="  mx-auto mt-20  flex items-center    flex-col w-full max-w-md px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10 ">
       <div className="self-center mb-6 text-xl font-light text-gray-600 sm:text-2xl dark:text-white">
@@ -9,7 +18,7 @@ const Forgetpassword = () => {
       </div>
 
       <div className="mt-8">
-        <form action="#" autoComplete="off">
+        <form action="#" autoComplete="off" onSubmit={resetPass}>
           <div className="flex flex-col mb-2">
             <div className="flex relative ">
               <span className="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
