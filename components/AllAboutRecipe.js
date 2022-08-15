@@ -8,7 +8,7 @@ const AllAboutRecipe = ({ recipe }) => {
       <div className="container p-5 my-24   mx-auto flex flex-col lg:w-4/5">
         <div className=" w-full flex flex-col md:flex-row  justify-center ">
           <div className="w-60  relative h-60 self-center">
-            {recipe.image && (
+            {recipe?.image && (
               <Image
                 alt="ecommerce"
                 className=" object-cover object-center rounded"
