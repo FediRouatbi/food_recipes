@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import FormButtons from "../components/newrecipe/FormButtons";
 import ImageInput from "../components/newrecipe/ImageInput";
 import IngredientsAndMethod from "../components/newrecipe/IngredientsAndMethod";
@@ -11,7 +11,7 @@ import { newRecipeActions } from "../store/newRecipe";
 import { useSelector, useDispatch } from "react-redux";
 import { getImageUrl } from "../store/firebaseFunctions";
 import axios from "axios";
-
+import { useRouter } from "next/router";
 const trimRecipe = (data) => {
   const recipe = { ...data };
   recipe.name = recipe.name.trim();
@@ -28,6 +28,8 @@ const trimRecipe = (data) => {
   return recipe;
 };
 const Newrecipe = () => {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const step = useSelector((state) => state.step.current);
   const showModal = useSelector((state) => state.step.showModal);
   const recipe = useSelector((state) => state.newRecipe);
@@ -37,11 +39,11 @@ const Newrecipe = () => {
     dispatch(stepActions.updateStep(num));
   };
   const dispatch = useDispatch();
-  const openModal = () => {
-    dispatch(stepActions.openModal());
-  };
+
   const closeModal = () => {
     dispatch(stepActions.closeModal());
+    reset();
+    router.replace("/");
   };
   const nextPage = (e) => {
     e.preventDefault();
@@ -73,17 +75,25 @@ const Newrecipe = () => {
   const getAboutRecipe = (about) => {
     dispatch(newRecipeActions.updateRecipeAbout(about));
   };
-  const addNewRecipe = async () => {
-    const data = trimRecipe(recipe);
+  const addNewRecipe = async (e) => {
+    try {
+      e.preventDefault();
+      const data = trimRecipe(recipe);
+      setLoading(true);
+      await axios.post("/api/new-recipe", {
+        ...data,
 
-    await axios.post("/api/new-recipe", {
-      ...data,
-
-      creator: user,
-    });
-
-    dispatch(newRecipeActions.clear());
+        creator: user,
+      });
+      dispatch(stepActions.openModal());
+    } catch (err) {
+      console.log(err);
+    }
+    setLoading(false);
+  };
+  const reset = () => {
     dispatch(stepActions.reset());
+    dispatch(newRecipeActions.clear());
   };
 
   return (
@@ -119,9 +129,9 @@ const Newrecipe = () => {
             step={step}
             recipe={recipe}
             showModal={showModal}
-            openModal={openModal}
             closeModal={closeModal}
             addNewRecipe={addNewRecipe}
+            loading={loading}
           />
         </form>
       </div>

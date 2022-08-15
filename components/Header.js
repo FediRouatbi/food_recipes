@@ -139,6 +139,7 @@ const Header = () => {
         </div>
       </div>
       <motion.div
+        initial={{ opacity: 0 }}
         transition={{ type: "Spring" }}
         variants={variants}
         animate={showLinks ? "open" : "closed"}
