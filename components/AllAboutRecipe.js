@@ -3,18 +3,19 @@ import Image from "next/image";
 import { SiCodechef } from "react-icons/si";
 import { MdTimer } from "react-icons/md";
 const AllAboutRecipe = ({ recipe }) => {
-  console.log(recipe);
   return (
     <section className="text-gray-600 body-font overflow-hidden">
       <div className="container p-5 my-24   mx-auto flex flex-col lg:w-4/5">
         <div className=" w-full flex flex-col md:flex-row  justify-center ">
           <div className="w-60  relative h-60 self-center">
-            <Image
-              alt="ecommerce"
-              className=" object-cover object-center rounded"
-              src={recipe.image}
-              layout="fill"
-            />
+            {recipe.image && (
+              <Image
+                alt="ecommerce"
+                className=" object-cover object-center rounded"
+                src={recipe.image}
+                layout="fill"
+              />
+            )}
           </div>
           <div className="  flex-grow flex flex-col   md:pl-10  mt-6 md:mt-0">
             <h1 className="text-gray-900 text-3xl title-font font-bold mb-1">
