@@ -19,22 +19,22 @@ const AllAboutRecipe = ({ recipe }) => {
           </div>
           <div className="  flex-grow flex flex-col   md:pl-10  mt-6 md:mt-0">
             <h1 className="text-gray-900 text-3xl title-font font-bold mb-1">
-              {recipe.name}
+              {recipe?.name}
             </h1>
 
-            <p className="leading-relaxed max-w-xl">{recipe.about}</p>
+            <p className="leading-relaxed max-w-xl">{recipe?.about}</p>
             <p className="mt-5">
               <div>
-                Created By : <span>{recipe.creator.displayName}</span>{" "}
+                Created By : <span>{recipe?.creator?.displayName}</span>{" "}
               </div>
-              <div>On: {recipe.createdAt.slice(0, 10)}</div>
+              <div>On: {recipe?.createdAt.slice(0, 10)}</div>
             </p>
             <div className="flex justify-around mt-auto py-2">
               <div className="flex gap-1 items-center">
-                <SiCodechef size={30} /> {recipe.difficulty}
+                <SiCodechef size={30} /> {recipe?.difficulty}
               </div>
               <div className="flex gap-1 items-center">
-                <MdTimer size={30} /> {recipe.timeToCook}
+                <MdTimer size={30} /> {recipe?.timeToCook}
               </div>
             </div>
           </div>
@@ -45,7 +45,7 @@ const AllAboutRecipe = ({ recipe }) => {
               Ingredients :
             </h1>
             <ul className="mt-10 space-y-3">
-              {recipe.ingredients.map((el) => (
+              {recipe?.ingredients.map((el) => (
                 <li
                   key={el.id}
                   className=" bg-slate-400 font-semibold  ring-2 ring-gray-900 rounded-sm p-2 text-white"
@@ -60,7 +60,7 @@ const AllAboutRecipe = ({ recipe }) => {
               Method :
             </h1>
             <ul className="mt-10 space-y-5">
-              {recipe.methods.map((el, i) => (
+              {recipe?.methods.map((el, i) => (
                 <li key={el.id} className="">
                   <span className="text-3xl">{i + 1}.</span>
                   {el.text}
