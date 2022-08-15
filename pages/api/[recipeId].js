@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-const Recipe = mongoose.model("Recipe");
-//import Recipe from "../../store/newRecipeSchema";
+import Recipe from "../../store/newRecipeSchema";
+
 //   /api/new-recipe
 //POST /api/new-recipe
 

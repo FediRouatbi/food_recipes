@@ -1,7 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import mongoose from "mongoose";
-const Recipe = mongoose.model("Recipe");
-
+import Recipe from "../../store/newRecipeSchema";
 async function handler(req, res) {
   if (req.method === "GET") {
     await mongoose.connect(process.env.MONGO_URL);
