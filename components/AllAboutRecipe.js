@@ -12,7 +12,7 @@ const AllAboutRecipe = ({ recipe }) => {
               <Image
                 alt="ecommerce"
                 className=" object-cover object-center rounded"
-                src={recipe.image}
+                src={recipe?.image}
                 layout="fill"
               />
             )}
