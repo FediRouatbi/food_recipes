@@ -7,7 +7,7 @@ const Modal = ({ closeModal }) => {
 
   const closeShowModal = () => {
     closeModal();
-    router.push("/");
+    router.replace("/");
   };
 
   useEffect(() => {
