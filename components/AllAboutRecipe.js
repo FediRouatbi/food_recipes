@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { SiCodechef } from "react-icons/si";
 import { MdTimer } from "react-icons/md";
+import Link from "next/link";
 const AllAboutRecipe = ({ recipe }) => {
   return (
     <section className="text-gray-600 body-font overflow-hidden">
@@ -23,12 +24,12 @@ const AllAboutRecipe = ({ recipe }) => {
             </h1>
 
             <p className="leading-relaxed max-w-xl">{recipe?.about}</p>
-            <p className="mt-5">
-              <div>
+            <div className="mt-5">
+              <a href={`user/${recipe.creator?.uid || recipe.owner}`}>
                 Created By : <span>{recipe?.creator?.displayName}</span>{" "}
-              </div>
-              <div>On: {recipe?.createdAt.slice(0, 10)}</div>
-            </p>
+              </a>
+              <p>On: {recipe?.createdAt.slice(0, 10)}</p>
+            </div>
             <div className="flex justify-around mt-auto py-2">
               <div className="flex gap-1 items-center">
                 <SiCodechef size={30} /> {recipe?.difficulty}

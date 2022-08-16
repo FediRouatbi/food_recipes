@@ -31,8 +31,8 @@ const Hero = () => {
           <p className="mb-8 leading-relaxed">
             Food Recipes is here to help you cook delicious meals with less
             stress and more joy. Find the best recipe ideas discover the one
-            that fit your eating preferences, needs, and more.
-            <div> Cook with confidence. Enjoy your food.</div>
+            that fit your eating preferences, needs, and more. Cook with
+            confidence. Enjoy your food.
           </p>
           <div className="flex justify-center">
             <Link href={currentUser?.uid ? "newrecipe" : "login"}>

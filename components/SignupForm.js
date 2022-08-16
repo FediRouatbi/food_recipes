@@ -12,17 +12,17 @@ const SignupForm = ({ signupUser }) => {
   const passwordRef = useRef();
   const signup = async (e) => {
     try {
-      setLoading(true);
       e.preventDefault();
+      setLoading(true);
       const name = nameRef.current.value;
       const email = emailRef.current.value;
       const password = passwordRef.current.value;
       await signupUser(name, email, password);
-      route.replace("/");
     } catch (error) {
       console.log(error);
     }
     setLoading(false);
+    route.replace("/");
   };
   return (
     <div className="  mx-auto mt-20  flex items-center    flex-col w-full max-w-md px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10 ">

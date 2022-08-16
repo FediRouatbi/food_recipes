@@ -23,9 +23,6 @@ const nextConfig = {
       "firebasestorage.googleapis.com",
     ], //Domain of image host
   },
-  experimental: {
-    isrMemoryCacheSize: 0,
-  },
 };
 
 module.exports = nextConfig;

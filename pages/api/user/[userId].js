@@ -1,18 +1,21 @@
 import mongoose from "mongoose";
-import Recipe from "../../store/newRecipeSchema";
+import User from "../../../store/userSchema";
+
 //   /api/new-recipe
 //POST /api/new-recipe
 
 async function handler(req, res) {
-  if (req.method === "POST") {
+  if (req.method === "GET") {
     console.log("connecting to mongo");
     await mongoose.connect(process.env.MONGO_URL);
     console.log("connected to mongo");
-    await Recipe.create(req.body);
+
+    const user = await User.findOne({ _id: req.query.userId });
+
     mongoose.connection.close();
     console.log("disconnected to mongo");
 
-    res.status(201).json({ message: "recipe inserted! ", data: req.body });
+    res.status(201).json({ message: "user information! ", data: user });
   } else {
     res.status(404).json({ message: "post only api" });
   }

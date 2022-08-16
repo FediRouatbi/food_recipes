@@ -15,13 +15,7 @@ const newRecipeSchema = new mongoose.Schema({
     type: Date,
     default: () => Date.now(),
   },
-  creator: {
-    uid: String,
-    displayName: String,
-    email: String,
-    phoneNumber: String,
-    photoURL: String,
-  },
+  owner: String,
 });
 let Recipe;
 try {

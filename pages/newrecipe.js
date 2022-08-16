@@ -83,7 +83,7 @@ const Newrecipe = () => {
       await axios.post("/api/new-recipe", {
         ...data,
 
-        creator: user,
+        owner: user.uid,
       });
       dispatch(stepActions.openModal());
     } catch (err) {

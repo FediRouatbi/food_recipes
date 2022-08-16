@@ -9,7 +9,7 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-
+import axios from "axios";
 import auth from "./firebaseConfig";
 import store from "./index";
 import { userActions } from "./user";
@@ -26,7 +26,7 @@ export const getImageUrl = async (file, id) => {
   const url = await getDownloadURL(storageRef);
   store.dispatch(newRecipeActions.updateImage(url));
 };
-const signInUser = (user) => {
+const signInUser = async (user) => {
   store.dispatch(
     userActions.login({
       uid: user.uid,
@@ -36,16 +36,25 @@ const signInUser = (user) => {
       email: user.email,
     })
   );
+  await axios.post("/api/new-user", {
+    _id: user.uid,
+    displayName: user.displayName,
+    phoneNumber: user.phoneNumber,
+    photoURL: user.photoURL,
+    email: user.email,
+  });
 };
 
 export const signupUser = async (fullName, email, password) => {
   try {
     const resp = await createUserWithEmailAndPassword(auth, email, password);
     await updateProfile(auth.currentUser, { displayName: fullName });
-    signInUser(resp.user);
+
+    await signInUser(resp.user);
   } catch (error) {
     throw new Error(error);
   }
+  console.log("finish signup user");
 };
 export const loginUser = async (email, password) => {
   try {

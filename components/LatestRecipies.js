@@ -1,7 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import food from "./img/food.jpg";
-import fedi from "./img/img.png";
 const LatestRecipies = ({ recipes }) => {
   return (
     <section className="w-full bg-white p-12 px-8 max-w-[90rem] mx-auto">
@@ -37,25 +35,6 @@ const LatestRecipies = ({ recipes }) => {
               <p className="text-gray-400 dark:text-gray-300 font-light text-md">
                 {recipe?.about}
               </p>
-              <div className="flex items-center mt-4">
-                <a href="#" className="block relative ">
-                  <div className="mx-auto h-14 w-14  overflow-hidden">
-                    <Image
-                      alt="profil"
-                      src={recipe?.creator?.photoURL}
-                      width={40}
-                      height={40}
-                      className=" object-cover rounded-full "
-                      layout="responsive"
-                    />
-                  </div>
-                </a>
-                <div className="flex flex-col justify-between ml-4 text-sm">
-                  <p className="text-gray-800 dark:text-white">
-                    {recipe?.creator?.displayName}
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
         ))}

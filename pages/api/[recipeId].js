@@ -13,6 +13,8 @@ async function handler(req, res) {
     const recipe = await Recipe.findOne({ id: req.query.recipeId });
 
     mongoose.connection.close();
+    console.log("disconnected to mongo");
+
     res.status(201).json({ message: "recipe inserted! ", data: recipe });
   } else {
     res.status(404).json({ message: "post only api" });

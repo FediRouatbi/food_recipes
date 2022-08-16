@@ -82,15 +82,25 @@ const Header = () => {
           </div>
 
           {user?.uid ? (
-            <div className="relative flex">
-              <Image
-                onClick={() => setshowMenu((prv) => !prv)}
-                className=" rounded-full flex cursor-pointer z-10"
-                src={user.photoURL || FaUserAlt}
-                alt="Default avatar"
-                height={50}
-                width={50}
-              ></Image>
+            <div
+              onClick={() => setshowMenu((prv) => !prv)}
+              className="relative flex"
+            >
+              {user.photoURL ? (
+                <Image
+                  className=" rounded-full flex cursor-pointer z-10"
+                  src={user.photoURL}
+                  alt="Default avatar"
+                  height={50}
+                  width={50}
+                ></Image>
+              ) : (
+                <FaUserAlt
+                  size={40}
+                  className="cursor-pointer  border-2 border-gray-600 rounded-full p-1 "
+                />
+              )}
+
               <span
                 className={`${
                   showMenu ? "" : "hidden"
