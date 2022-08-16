@@ -6,6 +6,7 @@ import RecipeModel from "../store/newRecipeSchema";
 
 export default function Home({ allRecipes }) {
   const recipes = JSON.parse(allRecipes);
+
   return (
     <>
       <Hero />

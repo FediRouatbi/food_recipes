@@ -1,13 +1,13 @@
 import Image from "next/image";
 import React from "react";
-import cookingBook from "./img/cooking-book.png";
+import recipes from "./img/recipes.svg";
 const Footer = () => {
   return (
     <footer className="bg-gray-100 body-font mt-auto ">
       <div className="container px-5 py-6 mx-auto flex items-center justify-center sm:flex-row flex-col">
         <div className="flex items-center">
-          <Image src={cookingBook} height={50} width={50} alt="cooking book" />
-          <h1 className="text-2xl font-bold">Food recipe</h1>
+          <Image src={recipes} height={50} width={50} alt="cooking book" />
+          <h1 className="text-2xl font-bold">Food recipes</h1>
         </div>
         <p className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
           © 2022 —
@@ -26,7 +26,7 @@ const Footer = () => {
             target="_blank"
             href="https://v2--rouatbi-portfolio.netlify.app/"
           >
-            <span className="cursor-pointer fill-gray-500  hover:fill-gray-600">
+            <span className="cursor-pointer fill-indigo-500  hover:fill-indigo-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 x="0px"
@@ -43,7 +43,7 @@ const Footer = () => {
             target="_blank"
             href="https://www.facebook.com/xCHIVASx/"
           >
-            <span className="text-gray-500 cursor-pointer hover:text-gray-600">
+            <span className="text-indigo-500 cursor-pointer hover:text-indigo-600">
               <svg
                 fill="currentColor"
                 strokeLinecap="round"
@@ -62,7 +62,7 @@ const Footer = () => {
             target="_blank"
             href="https://www.instagram.com/fedirouatbi/"
           >
-            <span className="text-gray-500 cursor-pointer hover:text-gray-600">
+            <span className="text-indigo-500 cursor-pointer hover:text-indigo-600">
               <svg
                 fill="none"
                 stroke="currentColor"
@@ -82,7 +82,7 @@ const Footer = () => {
             target="_blank"
             href="https://www.linkedin.com/in/fedi-rouatbi-93554b195/"
           >
-            <span className="text-gray-500 cursor-pointer hover:text-gray-600">
+            <span className="text-indigo-500 cursor-pointer hover:text-indigo-600">
               <svg
                 fill="currentColor"
                 stroke="currentColor"

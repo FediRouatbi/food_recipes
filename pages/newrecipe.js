@@ -93,7 +93,7 @@ const Newrecipe = () => {
   };
   const reset = () => {
     dispatch(stepActions.reset());
-    dispatch(newRecipeActions.clear());
+    dispatch(newRecipeActions.reset());
   };
 
   return (

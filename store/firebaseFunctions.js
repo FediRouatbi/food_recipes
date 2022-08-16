@@ -14,6 +14,7 @@ import auth from "./firebaseConfig";
 import store from "./index";
 import { userActions } from "./user";
 import { newRecipeActions } from "./newRecipe";
+import { stepActions } from "./Step";
 
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
@@ -24,8 +25,6 @@ export const getImageUrl = async (file, id) => {
   await uploadBytes(storageRef, file);
   const url = await getDownloadURL(storageRef);
   store.dispatch(newRecipeActions.updateImage(url));
-
-  console.log(url);
 };
 const signInUser = (user) => {
   store.dispatch(
@@ -85,4 +84,6 @@ export const resetPassword = async (email) => {
 export const logout = async () => {
   await signOut(auth);
   store.dispatch(userActions.logout());
+  store.dispatch(stepActions.reset());
+  store.dispatch(newRecipeActions.reset());
 };

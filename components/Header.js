@@ -1,12 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-
 import React, { useState } from "react";
 import { FiSettings, FiLogOut } from "react-icons/fi";
 import { FaUserAlt } from "react-icons/fa";
-
-import cookingBook from "./img/cooking-book.png";
+import recipes from "./img/recipes.svg";
 import { useRouter } from "next/dist/client/router";
 import { useSelector } from "react-redux";
 import { logout } from "../store/firebaseFunctions";
@@ -21,19 +19,23 @@ const Header = () => {
     open: { opacity: 1, y: 0, height: "100%" },
     closed: { opacity: 0, scale: 0, y: "-100%", height: "0" },
   };
-
+  const logoutUser = () => {
+    router.replace("/");
+    logout();
+  };
   return (
     <nav className="bg-white dark:bg-gray-800  shadow  ">
       <div className="max-w-[90rem] mx-auto px-8 z-40 ">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <Image
-              src={cookingBook}
+              src={recipes}
               height={50}
               width={50}
-              alt="cooking book"
+              className="fill-indigo-500 text-red-800	"
+              alt="cooking book "
             />
-            <h1 className="text-2xl font-bold">Food recipe</h1>
+            <h1 className="text-2xl font-bold">Food recipes</h1>
           </div>
 
           <div className=" flex items-center text-2xl ">
@@ -104,7 +106,7 @@ const Header = () => {
                   </span>
                 </Link>
                 <button
-                  onClick={logout}
+                  onClick={logoutUser}
                   className=" font-bold flex justify-center items-center  gap-2 p-2 hover:bg-slate-400"
                 >
                   <FiLogOut />

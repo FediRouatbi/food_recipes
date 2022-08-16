@@ -3,7 +3,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useRouter } from "next/router";
 import { Provider } from "react-redux";
-import store from "../store/index";
+import store, { persistor } from "../store/index";
+import { PersistGate } from "redux-persist/integration/react";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const router = useRouter();
@@ -18,11 +19,13 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 
   return (
     <Provider store={store}>
-      <div id="modal"></div>
-      {!hidden && <Header />}
+      <PersistGate loading={null} persistor={persistor}>
+        <div id="modal"></div>
+        {!hidden && <Header />}
 
-      <Component {...pageProps} />
-      {!hidden && <Footer />}
+        <Component {...pageProps} />
+        {!hidden && <Footer />}
+      </PersistGate>
     </Provider>
   );
 }

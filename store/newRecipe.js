@@ -86,7 +86,7 @@ const newRecipe = createSlice({
       else
         state.timeToCook = `${state.hours} Hours and ${action.payload} Minutes`;
     },
-    clear: () => initialState,
+    reset: () => initialState,
   },
 });
 
