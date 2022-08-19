@@ -1,7 +1,7 @@
 import store from "../store/index";
 import axios from "axios";
-const { user } = store.getState();
 export const newComment = async (text, recipeId) => {
+  const { user } = store.getState();
   const userName = user.user.displayName;
   const image = user.user.photoURL;
   const comment = {

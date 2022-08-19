@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useSelector } from "react-redux";
 import { GrEdit } from "react-icons/gr";
 import { TiDeleteOutline } from "react-icons/ti";
+import { FaUserAlt } from "react-icons/fa";
 const Comment = ({ comment, deleteComm, updateComm }) => {
   const user = useSelector((state) => state.user.user);
   const textRef = useRef();
@@ -17,12 +18,19 @@ const Comment = ({ comment, deleteComm, updateComm }) => {
       <div className=" mb-4 border border-slate-400">
         <div className="bg-gray-100 p-3 flex items-center gap-2 text-xl font-mono text-black">
           <div className="w-10 h-10  relative ">
-            <Image
-              src={comment.image}
-              alt="user image"
-              layout="fill"
-              className="rounded-full"
-            />
+            {comment.image ? (
+              <Image
+                src={comment.image}
+                alt="user image"
+                layout="fill"
+                className="rounded-full"
+              />
+            ) : (
+              <FaUserAlt
+                size={40}
+                className=" border-2 border-gray-600 rounded-full p-1  "
+              />
+            )}
           </div>
 
           <div>{comment.user}</div>
