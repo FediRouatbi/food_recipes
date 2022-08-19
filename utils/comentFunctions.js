@@ -10,14 +10,14 @@ export const newComment = async (text, recipeId) => {
     image,
     text,
   };
-  await axios.post("http://localhost:3000/api/comment/new-comment", comment);
+  await axios.post("/api/comment/new-comment", comment);
   return comment;
 };
 export const deleteComment = async (commentId) => {
-  await axios.delete(`http://localhost:3000/api/comment/${commentId}`);
+  await axios.delete(`/api/comment/${commentId}`);
 };
 export const updateComment = async (commentId, text) => {
-  await axios.patch(`http://localhost:3000/api/comment/${commentId}`, {
+  await axios.patch(`/api/comment/${commentId}`, {
     text,
   });
 };
