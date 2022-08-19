@@ -5,6 +5,7 @@ import Recipe from "../../../store/recipeSchema";
 
 async function handler(req, res) {
   if (req.method === "POST") {
+    console.log("dsqdsqd");
     await mongoose.connect(process.env.MONGO_URL);
     await Recipe.create(req.body);
 

@@ -36,7 +36,7 @@ const signInUser = async (user) => {
       email: user.email,
     })
   );
-  await axios.post("/api/new-user", {
+  await axios.post("/api/user/new-user", {
     _id: user.uid,
     displayName: user.displayName,
     phoneNumber: user.phoneNumber,

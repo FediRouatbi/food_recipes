@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Recipe from "../../components/recipes/Recipe";
 import Pager from "../../components/recipes/Pager";
 import mongoose from "mongoose";
 import RecipeModel from "../../store/recipeSchema";
-const recipes = ({ recipes }) => {
+import useSWR from "swr";
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
+const Recipes = ({ allRecipes }) => {
+  const [recipes, setRecipes] = useState(allRecipes);
+  const { data, error } = useSWR("/api/recipes", fetcher);
+
+  useEffect(() => {
+    if (data) setRecipes(data);
+  }, [data]);
   return (
     <section className="text-gray-600 body-font overflow-hidden px-8 max-w-[90rem] mx-auto">
       <div className="container  py-24 mx-auto">
@@ -18,13 +27,13 @@ const recipes = ({ recipes }) => {
   );
 };
 
-export default recipes;
+export default Recipes;
 export async function getStaticProps() {
   await mongoose.connect(process.env.MONGO_URL);
 
   const data = await RecipeModel.find({});
 
-  const recipes = JSON.parse(JSON.stringify(data));
+  const allRecipes = JSON.parse(JSON.stringify(data));
 
-  return { props: { recipes }, revalidate: 600 };
+  return { props: { allRecipes }, revalidate: 600 };
 }
