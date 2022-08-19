@@ -1,6 +1,7 @@
 import React from "react";
 import { SiCodechef } from "react-icons/si";
 import { MdTimer } from "react-icons/md";
+import Image from "next/image";
 const checkValidite = (data) => {
   if (data.text?.trim()) return true;
   if (data.name?.trim()) return true;
@@ -9,6 +10,13 @@ const checkValidite = (data) => {
 const RecipeDetails = ({ recipe }) => {
   return (
     <div className="flex flex-col items-start gap-5  text-lg">
+      <div className="w-full">
+        <div className=" relative h-52 max-w-md flex w-full mx-auto rounded-md overflow-hidden">
+          {recipe?.image && (
+            <Image src={recipe?.image} layout="fill" alt="recipe image " />
+          )}
+        </div>
+      </div>
       <div className=" w-full">
         <h1 className="pb-2 text-5xl text-center font-bold">{recipe.name}</h1>
         <div className="max-w-lg">{recipe.about}</div>

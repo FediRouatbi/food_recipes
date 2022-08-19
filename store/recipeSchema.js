@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const newRecipeSchema = new mongoose.Schema({
+const recipeSchema = new mongoose.Schema({
   id: String,
   image: String,
   name: String,
@@ -15,13 +15,13 @@ const newRecipeSchema = new mongoose.Schema({
     type: Date,
     default: () => Date.now(),
   },
-  owner: String,
+  owner: { id: String, name: String },
 });
 let Recipe;
 try {
   if (mongoose.model("Recipe")) Recipe = mongoose.model("Recipe");
 } catch (err) {
-  Recipe = mongoose.model("Recipe", newRecipeSchema);
+  Recipe = mongoose.model("Recipe", recipeSchema);
 }
 
 export default Recipe;

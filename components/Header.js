@@ -3,6 +3,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { FiSettings, FiLogOut } from "react-icons/fi";
+import { TiArrowSortedDown } from "react-icons/ti";
 import { FaUserAlt } from "react-icons/fa";
 import recipes from "./img/recipes.svg";
 import { useRouter } from "next/dist/client/router";
@@ -84,27 +85,32 @@ const Header = () => {
           {user?.uid ? (
             <div
               onClick={() => setshowMenu((prv) => !prv)}
-              className="relative flex"
+              className="relative  cursor-pointer "
             >
-              {user.photoURL ? (
-                <Image
-                  className=" rounded-full flex cursor-pointer z-10"
-                  src={user.photoURL}
-                  alt="Default avatar"
-                  height={50}
-                  width={50}
-                ></Image>
-              ) : (
-                <FaUserAlt
-                  size={40}
-                  className="cursor-pointer  border-2 border-gray-600 rounded-full p-1 "
-                />
-              )}
-
+              <div className="flex flex-col justify-center items-center group">
+                {user.photoURL ? (
+                  <Image
+                    className=" rounded-full flex z-10  group-active:scale-95"
+                    src={user.photoURL}
+                    alt="Default avatar"
+                    height={37}
+                    width={37}
+                  ></Image>
+                ) : (
+                  <FaUserAlt
+                    size={40}
+                    className="cursor-pointer   border-2 border-gray-600 rounded-full p-1  "
+                  />
+                )}
+                <div className="flex group-hover:text-slate-600 text-slate-500   font-bold ">
+                  <span>Me</span>
+                  <TiArrowSortedDown size={20} className="self-end" />
+                </div>
+              </div>
               <span
                 className={`${
                   showMenu ? "" : "hidden"
-                } w-46 text-lg  z-20 overflow-hidden flex flex-col  bottom-0 translate-y-full  -translate-x-full  left-0  absolute  bg-white rounded-md shadow-md `}
+                } w-46 text-lg cursor-default   z-20 overflow-hidden flex flex-col  bottom-0 translate-y-full  -translate-x-full  left-0  absolute  bg-white rounded-md shadow-md `}
               >
                 <div className="p-4 text-sm">
                   <div>{user.displayName}</div>

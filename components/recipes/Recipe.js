@@ -1,11 +1,12 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import RecipeInfo from "../RecipeInfo";
 import { useRouter } from "next/router";
 const Recipe = ({ recipe }) => {
+
   const route = useRouter();
   const showDetail = () => {
-    route.push(`/${recipe.id}`);
+    route.push(`recipes/${recipe.id}`);
   };
   return (
     <div className="my-8 flex md:gap-10 gap-0 flex-col rounded-md sm:flex-row shadow-md items-center hover:shadow-lg transition-all">

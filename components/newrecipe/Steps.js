@@ -1,7 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { confirmStep1, confirmStep2, confirmStep3 } from "./stepsValidation";
+
 const Steps = ({ updateCurrentStep }) => {
   const step = useSelector((state) => state.step.current);
+  const recipe = useSelector((state) => state.newRecipe);
 
   const activeClass = "bg-gray-100 border-blue-500 text-blue-500";
   return (
@@ -24,7 +27,9 @@ const Steps = ({ updateCurrentStep }) => {
         STEP 1
       </a>
       <a
-        className={`${step === 2 && activeClass} step`}
+        className={`${step === 2 && activeClass} step ${
+          !confirmStep1(recipe) ? "hover:cursor-not-allowed" : ""
+        }`}
         onClick={() => updateCurrentStep(2)}
       >
         <svg
@@ -41,7 +46,9 @@ const Steps = ({ updateCurrentStep }) => {
         STEP 2
       </a>
       <a
-        className={`${step === 3 && activeClass} step`}
+        className={`${step === 3 && activeClass} step ${
+          !confirmStep2(recipe) ? "hover:cursor-not-allowed" : ""
+        } `}
         onClick={() => updateCurrentStep(3)}
       >
         <svg
@@ -59,7 +66,9 @@ const Steps = ({ updateCurrentStep }) => {
         STEP 3
       </a>
       <a
-        className={`${step === 4 && activeClass} step`}
+        className={`${step === 4 && activeClass} step ${
+          !confirmStep3(recipe) ? "hover:cursor-not-allowed" : ""
+        }`}
         onClick={() => updateCurrentStep(4)}
       >
         <svg

@@ -12,6 +12,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { getImageUrl } from "../store/firebaseFunctions";
 import axios from "axios";
 import { useRouter } from "next/router";
+import {
+  confirmStep1,
+  confirmStep2,
+  confirmStep3,
+} from "../components/newrecipe/stepsValidation";
+
 const trimRecipe = (data) => {
   const recipe = { ...data };
   recipe.name = recipe.name.trim();
@@ -36,7 +42,13 @@ const Newrecipe = () => {
   const user = useSelector((state) => state.user.user);
 
   const updateCurrentStep = (num) => {
-    dispatch(stepActions.updateStep(num));
+    if (
+      (num === 2 && confirmStep1(recipe)) ||
+      (num === 3 && confirmStep2(recipe)) ||
+      (num === 4 && confirmStep3(recipe)) ||
+      num === 1
+    )
+      dispatch(stepActions.updateStep(num));
   };
   const dispatch = useDispatch();
 
@@ -66,7 +78,6 @@ const Newrecipe = () => {
     dispatch(newRecipeActions.updateDifficulty(e.target.value));
   };
   const getImage = (e) => {
-    console.log("dsd");
     getImageUrl(e.target.files[0], recipe.id);
   };
   const getRecipeName = (name) => {
@@ -83,7 +94,7 @@ const Newrecipe = () => {
       await axios.post("/api/new-recipe", {
         ...data,
 
-        owner: user.uid,
+        owner: { id: user.uid, name: user.displayName },
       });
       dispatch(stepActions.openModal());
     } catch (err) {

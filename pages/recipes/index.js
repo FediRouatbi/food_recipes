@@ -2,7 +2,7 @@ import React from "react";
 import Recipe from "../../components/recipes/Recipe";
 import Pager from "../../components/recipes/Pager";
 import mongoose from "mongoose";
-import RecipeModel from "../../store/newRecipeSchema";
+import RecipeModel from "../../store/recipeSchema";
 const recipes = ({ recipes }) => {
   return (
     <section className="text-gray-600 body-font overflow-hidden px-8 max-w-[90rem] mx-auto">
@@ -26,5 +26,5 @@ export async function getStaticProps() {
 
   const recipes = JSON.parse(JSON.stringify(data));
 
-  return { props: { recipes }, revalidate: 1 };
+  return { props: { recipes }, revalidate: 600 };
 }

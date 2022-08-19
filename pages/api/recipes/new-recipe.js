@@ -1,16 +1,14 @@
 import mongoose from "mongoose";
-import Recipe from "../../store/newRecipeSchema";
+import Recipe from "../../../store/recipeSchema";
 //   /api/new-recipe
 //POST /api/new-recipe
 
 async function handler(req, res) {
   if (req.method === "POST") {
-    console.log("connecting to mongo");
     await mongoose.connect(process.env.MONGO_URL);
-    console.log("connected to mongo");
     await Recipe.create(req.body);
+
     mongoose.connection.close();
-    console.log("disconnected to mongo");
 
     res.status(201).json({ message: "recipe inserted! ", data: req.body });
   } else {

@@ -13,7 +13,6 @@ const FormButtons = (props) => {
     recipe,
     showModal,
     addNewRecipe,
-    
   } = props;
 
   let validation = "";
@@ -37,7 +36,9 @@ const FormButtons = (props) => {
           <button
             disabled={!validation}
             onClick={nextPage}
-            className="ml-auto  disabled:bg-slate-500 py-2 px-4 w-fit bg-blue-500 hover:bg-blue-600 focus:ring-blue-600 focus:ring-offset-indigo-200 text-white  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+            className={`ml-auto ${
+              !validation ? "hover:cursor-not-allowed" : ""
+            }  disabled:bg-slate-500 py-2 px-4 w-fit bg-blue-500 hover:bg-blue-600 focus:ring-blue-600 focus:ring-offset-indigo-200 text-white  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg `}
           >
             Next
           </button>

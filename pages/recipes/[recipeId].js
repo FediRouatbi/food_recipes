@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import mongoose from "mongoose";
-import RecipeModel from "../../store/newRecipeSchema";
+import RecipeModel from "../../store/recipeSchema";
 import AllAboutRecipe from "../../components/AllAboutRecipe";
 const RecipeDetails = ({ data }) => {
   return <AllAboutRecipe recipe={data} />;

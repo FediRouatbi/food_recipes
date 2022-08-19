@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import User from "../../store/userSchema";
+import User from "../../../store/userSchema";
 //   /api/new-user
 //POST /api/new-user
 
