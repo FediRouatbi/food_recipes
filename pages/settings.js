@@ -14,7 +14,7 @@ const Settings = () => {
     displayName
   ) => {};
 
-  return <SettingsForm user={data.data} />;
+  return <SettingsForm user={data?.data} />;
 };
 
 export default Settings;
