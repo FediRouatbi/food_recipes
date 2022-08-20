@@ -1,10 +1,10 @@
 import React from "react";
 
-const Spinner = () => {
+const Spinner = ({ size }) => {
   return (
     <svg
-      width="20"
-      height="20"
+      width={size}
+      height={size}
       fill="currentColor"
       className=" animate-spin"
       viewBox="0 0 1792 1792"

@@ -8,7 +8,7 @@ const Hero = () => {
   const currentUser = useSelector((state) => state.user.user);
 
   return (
-    <section className="text-gray-600 body-font">
+    <section className="text-gray-600 body-font mt-20">
       <div className="container mx-auto justify-between max-w-[90rem] md:flex-row-reverse flex px-8 py-16  flex-col items-center">
         <div className="lg:max-w-lg lg:w-full md:w-1/2 ">
           <Image
@@ -44,7 +44,6 @@ const Hero = () => {
               <button className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
                 Find Recipe
               </button>
-              
             </Link>
           </div>
         </div>

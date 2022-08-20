@@ -31,6 +31,15 @@ const trimRecipe = (data) => {
     text: el.text.trim(),
     id: el.id,
   }));
+
+  const hours = +recipe.hours;
+
+  const minutes = recipe.minutes;
+  const part1 = isNaN(minutes) ? minutes : `${minutes} Minutes`;
+  const part2 = `${hours} Hour${hours === 1 ? "" : "s"}`;
+  if (!hours) recipe.timeToCook = part1;
+  if (!minutes) recipe.timeToCook = part2;
+  if (hours && minutes) recipe.timeToCook = part2 + " And " + part1;
   return recipe;
 };
 const Newrecipe = () => {

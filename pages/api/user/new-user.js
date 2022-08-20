@@ -6,16 +6,15 @@ import User from "../../../store/userSchema";
 async function handler(req, res) {
   try {
     if (req.method === "POST") {
-      console.log("connecting to mongo");
       await mongoose.connect(process.env.MONGO_URL);
-      console.log("connected to mongo");
+
       const count = await User.countDocuments({ _id: req.body._id });
       if (count > 0) console.log("user already exist");
       else {
         await User.create(req.body);
       }
       mongoose.connection.close();
-      console.log("disconnected from mongo");
+
       res
         .status(201)
         .json({ message: "new user added successfully", data: req.body });

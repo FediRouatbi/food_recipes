@@ -5,6 +5,7 @@ import User from "../../../store/userSchema";
 //POST /api/new-recipe
 
 async function handler(req, res) {
+  console.log("szdqsd");
   if (req.method === "GET") {
     console.log("connecting to mongo");
     await mongoose.connect(process.env.MONGO_URL);

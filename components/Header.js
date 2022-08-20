@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FiSettings, FiLogOut } from "react-icons/fi";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { FaUserAlt } from "react-icons/fa";
@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { logout } from "../store/firebaseFunctions";
 
 const Header = () => {
+  const dropdownRef = useRef();
   const [showMenu, setshowMenu] = useState(false);
   const user = useSelector((state) => state.user.user);
   const [showLinks, setShowLinks] = useState(false);
@@ -24,8 +25,22 @@ const Header = () => {
     router.replace("/");
     logout();
   };
+  const closeNav = () => {
+    setShowLinks(false);
+  };
+  useEffect(() => {
+    if (!showMenu) return;
+    function handleClick(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setshowMenu(false);
+      }
+    }
+    window.addEventListener("click", handleClick);
+    // clean up
+    return () => window.removeEventListener("click", handleClick);
+  }, [showMenu]);
   return (
-    <nav className="bg-white dark:bg-gray-800  shadow  ">
+    <nav className="bg-white/95 dark:bg-gray-800  shadow  fixed w-full z-40 ">
       <div className="max-w-[90rem] mx-auto px-8 z-40 ">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
@@ -83,11 +98,12 @@ const Header = () => {
           </div>
 
           {user?.uid ? (
-            <div
-              onClick={() => setshowMenu((prv) => !prv)}
-              className="relative  cursor-pointer "
-            >
-              <div className="flex flex-col justify-center items-center group">
+            <div className="relative  cursor-pointer ">
+              <div
+                ref={dropdownRef}
+                onClick={() => setshowMenu((prv) => !prv)}
+                className="flex flex-col justify-center items-center group"
+              >
                 {user.photoURL ? (
                   <Image
                     className=" rounded-full flex z-10  group-active:scale-95"
@@ -163,26 +179,38 @@ const Header = () => {
         animate={showLinks ? "open" : "closed"}
         className="md:hidden h-full"
       >
-        <div className="flex flex-col px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <div className="flex flex-col items-start px-2 pt-2 pb-3 space-y-1 sm:px-3 w-fit">
           <Link href="/">
-            <span className="text-gray-300 hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+            <span
+              onClick={closeNav}
+              className="text-gray-300 hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            >
               Home
             </span>
           </Link>
           <Link href="/recipes">
-            <span className="text-gray-800 dark:text-white block px-3 py-2 rounded-md text-base font-medium">
+            <span
+              onClick={closeNav}
+              className="text-gray-300 hover:text-gray-800 dark:text-white block px-3 py-2 rounded-md text-base font-medium"
+            >
               Recipes
             </span>
           </Link>
 
           <Link href="/contact">
-            <span className="text-gray-300 hover:text-gray-800 dark:hover:text-white block px-3 py-2  text-base font-medium">
+            <span
+              onClick={closeNav}
+              className="text-gray-300 hover:text-gray-800 dark:hover:text-white block px-3 py-2  text-base font-medium"
+            >
               Contact
             </span>
           </Link>
           {!user?.uid && (
             <Link href="/login">
-              <span className=" text-center md:block cursor-pointer flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-indigo-500 rounded shadow-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200">
+              <span
+                onClick={closeNav}
+                className=" text-center md:block cursor-pointer flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-indigo-500 rounded shadow-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200"
+              >
                 Login
               </span>
             </Link>

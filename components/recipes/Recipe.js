@@ -1,14 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { HiArrowSmRight } from "react-icons/hi";
 
 import RecipeInfo from "../RecipeInfo";
 const Recipe = ({ recipe }) => {
   return (
-    <div className="my-8 flex md:gap-10 gap-0 flex-col rounded-md sm:flex-row shadow-md items-center hover:shadow-lg transition-all">
-      <div className=" relative justify-self-center  w-full flex flex-col max-w-[200px] max-h-60 h-44">
+    <div className="my-8 flex md:gap-10 gap-0 flex-col  sm:w-full mx-auto rounded-md sm:flex-row shadow-md items-center hover:shadow-lg transition-all">
+      <div className=" relative   w-full   max-w-[200px] max-h-60 h-48 ">
         <Image
-          className="object-cover brightness-[0.9] z-20 object-center md:rounded-l rounded-t md:rounded-r-none  "
+          className=" brightness-[0.9] z-20  md:rounded-l rounded-t md:rounded-r-none  "
           src={recipe?.image}
           alt="recipe"
           layout="fill"
@@ -20,20 +21,9 @@ const Recipe = ({ recipe }) => {
         </h2>
         <p className="leading-relaxed">{recipe?.about}</p>
         <Link href={`recipes/${recipe.id}`}>
-          <div className="cursor-pointer text-indigo-500 inline-flex items-center mt-4">
+          <div className="cursor-pointer text-blue-500 font-medium underline-offset-2 hover:underline gap-2 flex items-center mt-4">
             Learn More
-            <svg
-              className="w-4 h-4 ml-2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="2"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M5 12h14"></path>
-              <path d="M12 5l7 7-7 7"></path>
-            </svg>
+            <HiArrowSmRight />
           </div>
         </Link>
         {/* <div className=" absolute bottom-3 left-0">

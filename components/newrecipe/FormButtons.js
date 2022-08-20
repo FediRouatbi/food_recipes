@@ -48,7 +48,7 @@ const FormButtons = (props) => {
             onClick={addNewRecipe}
             className="flex ml-auto gap-2 py-2 px-4 w-fit bg-green-500 hover:bg-green-600 focus:ring-green-600 focus:ring-offset-indigo-200 text-white  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
           >
-            {loading && <Spinner />}
+            {loading && <Spinner size={20} />}
             {loading ? "Sending" : "Confirm"}
           </button>
         )}

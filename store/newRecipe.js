@@ -72,19 +72,12 @@ const newRecipe = createSlice({
     updateHour(state, action) {
       state.hours = action.payload;
 
-      if (!state.minutes && !action.payload) state.timeToCook = "";
-      if (!action.payload) state.timeToCook = `${state.minutes} Minutes`;
-      if (!state.minutes) state.timeToCook = `${action.payload} Hours`;
-      else
-        state.timeToCook = `${action.payload} Hours and ${state.minutes} Minutes`;
+    
     },
     updateMintues(state, action) {
       state.minutes = action.payload;
 
-      if (!state.hours && !action.payload) state.timeToCook = "";
-      if (!action.payload) state.timeToCook = `${state.hours} Hours`;
-      else
-        state.timeToCook = `${state.hours} Hours and ${action.payload} Minutes`;
+ 
     },
     reset: () => initialState,
   },

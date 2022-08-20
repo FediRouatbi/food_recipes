@@ -53,8 +53,12 @@ const AllAboutRecipe = ({ recipe }) => {
 
           <p className="leading-relaxed max-w-xl">{recipe?.about}</p>
           <div className="mt-5">
-            <a href={`http://localhost:3000/user/${recipe.owner.id}`}>
-              Created By : <span>{recipe?.owner?.name}</span>{" "}
+            <span>Created By : </span>
+            <a
+              href={`http://localhost:3000/user/${recipe.owner.id}`}
+              className="  text-blue-500 underline-offset-2 hover:underline  "
+            >
+              {recipe?.owner?.name}
             </a>
             <p>On: {recipe?.createdAt.slice(0, 10)}</p>
           </div>
