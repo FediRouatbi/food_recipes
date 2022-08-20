@@ -55,7 +55,7 @@ const AllAboutRecipe = ({ recipe }) => {
           <div className="mt-5">
             <span>Created By : </span>
             <a
-              href={`http://localhost:3000/user/${recipe.owner.id}`}
+              href={`/user/${recipe.owner.id}`}
               className="  text-blue-500 underline-offset-2 hover:underline  "
             >
               {recipe?.owner?.name}
