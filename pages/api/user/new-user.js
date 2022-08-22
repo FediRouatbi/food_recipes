@@ -9,14 +9,14 @@ async function handler(req, res) {
       await mongoose.connect(process.env.MONGO_URL);
 
       const count = await User.countDocuments({ _id: req.body._id });
-      if (count > 0) console.log("user already exist");
+      if (count > 0)  res.status(202).json({ message: "user already exist" });
       else {
         await User.create(req.body);
       }
       mongoose.connection.close();
 
       res
-        .status(201)
+        .status(202)
         .json({ message: "new user added successfully", data: req.body });
     } else {
       res.status(404).json({ message: "post only api" });
@@ -25,6 +25,5 @@ async function handler(req, res) {
     res.status(404).json({ message: "post only api" });
     console.log(err);
   }
-  console.log("finish add user");
 }
 export default handler;

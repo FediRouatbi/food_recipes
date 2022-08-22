@@ -11,7 +11,6 @@ async function handler(req, res) {
   }
 
   if (req.method === "DELETE") {
-    console.log(req.query.commentId);
     await Comment.deleteOne({ _id: req.query.commentId });
     mongoose.connection.close();
 

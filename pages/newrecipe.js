@@ -92,10 +92,7 @@ const Newrecipe = () => {
       e.preventDefault();
       const data = trimRecipe(recipe);
       setLoading(true);
-      console.log({
-        ...data,
-        owner: { id: user.uid, name: user.displayName },
-      });
+   
       await axios.post("/api/recipes/new-recipe", {
         ...data,
 

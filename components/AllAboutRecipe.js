@@ -27,6 +27,7 @@ const AllAboutRecipe = ({ recipe }) => {
   }, []);
   const addComment = async (e) => {
     e.preventDefault();
+    if (commentRef.current.value.trim().length < 3) return;
     await newComment(commentRef.current.value, recipe.id);
     commentRef.current.value = "";
     uploadComments();
@@ -38,6 +39,9 @@ const AllAboutRecipe = ({ recipe }) => {
   const updateComm = async (id, text) => {
     await updateComment(id, text);
     uploadComments();
+  };
+  const cancelComment = () => {
+    commentRef.current.value = "";
   };
   return (
     <section className="text-gray-600 body-font overflow-hidden container p-5 my-24   mx-auto flex flex-col lg:w-4/5">
@@ -125,6 +129,8 @@ const AllAboutRecipe = ({ recipe }) => {
           />
           <div className="flex justify-end gap-4">
             <button
+              onClick={cancelComment}
+              type="button"
               disabled={disabled}
               className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"
             >

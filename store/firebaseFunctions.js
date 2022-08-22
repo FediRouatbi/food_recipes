@@ -54,7 +54,6 @@ export const signupUser = async (fullName, email, password) => {
   } catch (error) {
     throw new Error(error);
   }
-  console.log("finish signup user");
 };
 export const loginUser = async (email, password) => {
   try {

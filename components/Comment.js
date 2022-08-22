@@ -33,9 +33,9 @@ const Comment = ({ comment, deleteComm, updateComm }) => {
             )}
           </div>
 
-          <div>{comment.user}</div>
+          <div className="text-lg">{comment.user}</div>
           <div className="ml-auto">
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-2 items-center text-base">
               {userComments && (
                 <>
                   <TiDeleteOutline
