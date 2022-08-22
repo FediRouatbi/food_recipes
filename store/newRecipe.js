@@ -13,6 +13,20 @@ const initialState = {
   type: "Tunisian cuisine",
   difficulty: "Easy",
 };
+
+const updateTimeToCook = (state) => {
+  const recipe = { ...state };
+
+  const hours = +recipe.hours;
+
+  const minutes = recipe.minutes;
+  const part1 = isNaN(minutes) ? "minutes" : `${minutes} Minutes`;
+  const part2 = `${hours} Hour${hours === 1 ? "" : "s"}`;
+  if (!hours) recipe.timeToCook = part1;
+  if (!minutes) recipe.timeToCook = part2;
+  if (hours && minutes) recipe.timeToCook = part2 + " And " + part1;
+  return recipe.timeToCook;
+};
 const newRecipe = createSlice({
   name: "newRecipe",
   initialState,
@@ -71,13 +85,11 @@ const newRecipe = createSlice({
     },
     updateHour(state, action) {
       state.hours = action.payload;
-
-    
+      state.timeToCook = updateTimeToCook(state);
     },
     updateMintues(state, action) {
       state.minutes = action.payload;
-
- 
+      state.timeToCook = updateTimeToCook(state);
     },
     reset: () => initialState,
   },

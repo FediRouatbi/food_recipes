@@ -55,6 +55,7 @@ const NewRecipeDetails = (props) => {
             <option value="Sea Food">Sea Food</option>
             <option value="Snacks">Snacks</option>
             <option value="Soups">Soups</option>
+            <option value="Cake">Cake</option>
           </select>
         </label>
         <label className="text-gray-700" htmlFor="Difficulty">

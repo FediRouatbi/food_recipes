@@ -18,11 +18,11 @@ const SignupForm = ({ signupUser }) => {
       const email = emailRef.current.value;
       const password = passwordRef.current.value;
       await signupUser(name, email, password);
+      route.replace("/");
     } catch (error) {
       console.log(error);
     }
     setLoading(false);
-    route.replace("/");
   };
   return (
     <div className="  mx-auto mt-20  flex items-center    flex-col w-full max-w-md px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10 ">
@@ -96,18 +96,15 @@ const SignupForm = ({ signupUser }) => {
               type="submit"
               className="py-2 px-4 flex justify-center items-center gap-2  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
             >
-              {loading && <Spinner />}
+              {loading && <Spinner size={20} />}
               Signup
             </button>
           </div>
         </form>
       </div>
       <div className="flex items-center justify-center mt-6">
-        <Link
-          href="/login"
-          className="inline-flex  items-center text-xs font-thin text-center text-gray-500 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white"
-        >
-          <span className="ml-2 cursor-pointer ">
+        <Link href="/login">
+          <span className="ml-2 cursor-pointer underline-offset-2 hover:underline ">
             Already have an Account ?
           </span>
         </Link>

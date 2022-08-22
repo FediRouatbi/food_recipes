@@ -46,9 +46,7 @@ const UserProfile = ({}) => {
           <p className="text-sm p-2 mt-5    px-4 rounded-full">
             Phone number : {user?.phoneNumber}
           </p>
-          <p className="text-sm p-2 mt-5    px-4 rounded-full">
-            about : {user?.about}
-          </p>
+          <p className="text-sm p-2 mt-5    px-4 rounded-full">{user?.about}</p>
         </div>
       </div>
     </div>

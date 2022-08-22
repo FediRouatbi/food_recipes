@@ -3,12 +3,17 @@ import Image from "next/image";
 import { SiCodechef } from "react-icons/si";
 import { MdTimer } from "react-icons/md";
 import Comment from "./Comment";
+import { useSelector } from "react-redux";
+
 import {
   newComment,
   deleteComment,
   updateComment,
 } from "../utils/comentFunctions";
+
 const AllAboutRecipe = ({ recipe }) => {
+  const user = useSelector((state) => state.user.user);
+  const disabled = user.uid ? false : true;
   const [comments, setComments] = useState([]);
   const commentRef = useRef();
   const uploadComments = async () => {
@@ -23,6 +28,7 @@ const AllAboutRecipe = ({ recipe }) => {
   const addComment = async (e) => {
     e.preventDefault();
     await newComment(commentRef.current.value, recipe.id);
+    commentRef.current.value = "";
     uploadComments();
   };
   const deleteComm = async (id) => {
@@ -109,16 +115,25 @@ const AllAboutRecipe = ({ recipe }) => {
 
         <form className="mb-10" onSubmit={addComment}>
           <input
+            disabled={disabled}
             ref={commentRef}
             type="text"
-            placeholder="Add a comment..."
+            placeholder={
+              disabled ? "you need to create an account" : "Add a comment..."
+            }
             className="w-full text-lg p-2 border-b-2 border-black mb-3 outline-none"
           />
           <div className="flex justify-end gap-4">
-            <button className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
+            <button
+              disabled={disabled}
+              className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"
+            >
               Cancel
             </button>
-            <button className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+            <button
+              disabled={disabled}
+              className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+            >
               Comment
             </button>
           </div>
