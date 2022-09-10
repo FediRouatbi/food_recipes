@@ -4,6 +4,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Spinner from "./Spinner";
+import notification from "../utils/toast";
 const SignupForm = ({ signupUser }) => {
   const [loading, setLoading] = useState(false);
   const route = useRouter();
@@ -19,8 +20,9 @@ const SignupForm = ({ signupUser }) => {
       const password = passwordRef.current.value;
       await signupUser(name, email, password);
       route.replace("/");
+      notification("success", "WELCOME ");
     } catch (error) {
-      console.log(error);
+      notification("error", err.message);
     }
     setLoading(false);
   };
@@ -38,6 +40,7 @@ const SignupForm = ({ signupUser }) => {
                 <FaUserAlt />
               </span>
               <input
+                required
                 ref={nameRef}
                 type="text"
                 id="userName"
@@ -60,6 +63,7 @@ const SignupForm = ({ signupUser }) => {
                 </svg>
               </span>
               <input
+                required
                 ref={emailRef}
                 type="text"
                 id="sign-in-email"
@@ -82,6 +86,7 @@ const SignupForm = ({ signupUser }) => {
                 </svg>
               </span>
               <input
+                required
                 ref={passwordRef}
                 type="password"
                 id="sign-in-email"

@@ -12,7 +12,7 @@ const Login = () => {
       await loginUser(email, password);
       pushTo("/newrecipe");
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   };
   const googleLoginHandler = async () => {

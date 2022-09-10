@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
-import { FaUserAlt } from "react-icons/fa";
 import Link from "next/link";
 import Spinner from "../components/Spinner";
+import notification from "../utils/toast";
 
 const LoginForm = (props) => {
   const { loginHandler, googleLoginHandler, githubLoginHandler } = props;
@@ -9,11 +9,17 @@ const LoginForm = (props) => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const signInNewuser = async (e) => {
-    setLoading(true);
-    e.preventDefault();
-    const email = emailRef.current.value;
-    const password = passwordRef.current.value;
-    await loginHandler(email, password);
+    try {
+      setLoading(true);
+      e.preventDefault();
+      const email = emailRef.current.value;
+      const password = passwordRef.current.value;
+      await loginHandler(email, password);
+    } catch (err) {
+      notification("error", err.message);
+    }
+    emailRef.current.value = "";
+    passwordRef.current.value = "";
     setLoading(false);
   };
   return (
@@ -71,6 +77,7 @@ const LoginForm = (props) => {
                 </svg>
               </span>
               <input
+                required
                 ref={emailRef}
                 type="text"
                 id="sign-in-email"
@@ -93,6 +100,7 @@ const LoginForm = (props) => {
                 </svg>
               </span>
               <input
+              required
                 ref={passwordRef}
                 type="password"
                 id="sign-in-password"

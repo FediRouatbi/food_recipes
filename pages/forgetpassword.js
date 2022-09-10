@@ -2,14 +2,27 @@ import React, { useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { resetPassword } from "../store/firebaseFunctions";
+import notification from "../utils/toast";
+import Spinner from "../components/Spinner";
+import { useState } from "react";
+
 const Forgetpassword = () => {
   const route = useRouter();
   const emailRef = useRef();
+  const [loading, setLoading] = useState(false);
   const resetPass = async (e) => {
-    e.preventDefault();
+    try {
+      setLoading(true);
+      e.preventDefault();
 
-    await resetPassword(emailRef.current.value);
-    route.replace("/login");
+      await resetPassword(emailRef.current.value);
+      route.replace("/login");
+      notification("success", "message send seccessfully on spam box");
+    } catch (err) {
+      notification("error", err.message);
+    }
+    setLoading(false);
+    emailRef.current.value = "";
   };
   return (
     <div className="  mx-auto mt-20  flex items-center    flex-col w-full max-w-md px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10 ">
@@ -33,6 +46,7 @@ const Forgetpassword = () => {
                 </svg>
               </span>
               <input
+                required
                 ref={emailRef}
                 type="text"
                 id="sign-in-email"
@@ -45,9 +59,9 @@ const Forgetpassword = () => {
           <div className="flex w-full">
             <button
               type="submit"
-              className="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+              className="py-2 px-4 flex justify-center items-center gap-3 bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
             >
-              SEND
+              {loading && <Spinner size={20} />} SEND
             </button>
           </div>
         </form>

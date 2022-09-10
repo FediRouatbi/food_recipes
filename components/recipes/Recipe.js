@@ -15,6 +15,7 @@ const Recipe = ({ recipe }) => {
           layout="fill"
         />
       </div>
+
       <div className="md:flex-grow p-4 relative ">
         <h2 className="text-2xl font-medium text-gray-900 title-font mb-2">
           {recipe?.name}

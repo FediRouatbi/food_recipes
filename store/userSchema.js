@@ -6,6 +6,7 @@ const newRecipeSchema = new mongoose.Schema({
   email: String,
   phoneNumber: String,
   photoURL: String,
+  about: String,
   createdAt: {
     type: Date,
     default: () => Date.now(),

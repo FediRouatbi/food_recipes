@@ -9,10 +9,16 @@ async function handler(req, res) {
       await mongoose.connect(process.env.MONGO_URL);
 
       const count = await User.countDocuments({ _id: req.body._id });
-      if (count > 0)  res.status(202).json({ message: "user already exist" });
-      else {
-        await User.create(req.body);
+
+      if (count > 0) {
+        const [user] = await User.find({ _id: req.body._id });
+
+        return res
+          .status(202)
+          .json({ message: "user already exist", data: user });
       }
+      const user = await User.create(req.body);
+      console.log(user);
       mongoose.connection.close();
 
       res

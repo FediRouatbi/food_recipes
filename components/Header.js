@@ -126,7 +126,7 @@ const Header = () => {
               <span
                 className={`${
                   showMenu ? "" : "hidden"
-                } w-46 text-lg cursor-default   z-20 overflow-hidden flex flex-col  bottom-0 translate-y-full  -translate-x-full  left-0  absolute  bg-white rounded-md shadow-md `}
+                } min-w-[200px]text-lg cursor-default   z-20 overflow-hidden flex flex-col  bottom-0 translate-y-full  -translate-x-full  left-0  absolute  bg-white rounded-md shadow-md `}
               >
                 <div className="p-4 text-sm">
                   <div>{user.displayName}</div>

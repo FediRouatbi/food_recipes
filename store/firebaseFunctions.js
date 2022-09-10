@@ -27,22 +27,26 @@ export const getImageUrl = async (file, id) => {
   store.dispatch(newRecipeActions.updateImage(url));
 };
 const signInUser = async (user) => {
-  store.dispatch(
-    userActions.login({
-      uid: user.uid,
-      displayName: user.displayName,
-      phoneNumber: user.phoneNumber,
-      photoURL: user.photoURL,
-      email: user.email,
-    })
-  );
-  await axios.post("/api/user/new-user", {
+  const currentUser = await axios.post("/api/user/new-user", {
     _id: user.uid,
     displayName: user.displayName,
     phoneNumber: user.phoneNumber,
     photoURL: user.photoURL,
     email: user.email,
+    about: null,
   });
+  const userFromDb = currentUser.data.data;
+  console.log(userFromDb);
+  store.dispatch(
+    userActions.login({
+      uid: userFromDb._id,
+      displayName: userFromDb.displayName,
+      phoneNumber: userFromDb.phoneNumber,
+      photoURL: userFromDb.photoURL,
+      email: userFromDb.email,
+      about: userFromDb.about,
+    })
+  );
 };
 
 export const signupUser = async (fullName, email, password) => {

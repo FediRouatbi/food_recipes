@@ -16,14 +16,13 @@ const userSlice = createSlice({
   reducers: {
     logout: () => initialState,
     login(state, action) {
-      const newUser = {
-        uid: action.payload.uid,
-        displayName: action.payload.displayName,
-        phoneNumber: action.payload.phoneNumber,
-        photoURL: action.payload.photoURL,
-        email: action.payload.email,
+      state.user = action.payload;
+    },
+    update(state, action) {
+      state.user = {
+        ...state.user,
+        ...action.payload,
       };
-      state.user = newUser;
     },
   },
 });
