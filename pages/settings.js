@@ -6,16 +6,22 @@ import {
   changeProfileInfo,
   updateImage,
 } from "../utils/SettingsUtils";
+import Head from "next/head";
 const Settings = () => {
   const user = useSelector((state) => state.user.user);
 
   return (
-    <SettingsForm
-      user={user}
-      changePassword={changePassword}
-      changeProfileInfo={changeProfileInfo}
-      updateImage={updateImage}
-    />
+    <>
+      <Head>
+        <title>Settings</title>
+      </Head>
+      <SettingsForm
+        user={user}
+        changePassword={changePassword}
+        changeProfileInfo={changeProfileInfo}
+        updateImage={updateImage}
+      />
+    </>
   );
 };
 

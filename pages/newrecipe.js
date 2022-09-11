@@ -17,6 +17,7 @@ import {
   confirmStep2,
   confirmStep3,
 } from "../components/newrecipe/stepsValidation";
+import Head from "next/head";
 
 const trimRecipe = (data) => {
   const recipe = { ...data };
@@ -92,7 +93,7 @@ const Newrecipe = () => {
       e.preventDefault();
       const data = trimRecipe(recipe);
       setLoading(true);
-   
+
       await axios.post("/api/recipes/new-recipe", {
         ...data,
 
@@ -110,45 +111,50 @@ const Newrecipe = () => {
   };
 
   return (
-    <section className="text-gray-600 body-font px-4 ">
-      <div className="container  py-24 mx-auto flex flex-wrap flex-col w-fit min-h-[810px]">
-        <Steps updateCurrentStep={updateCurrentStep} />
+    <>
+      <Head>
+        <title>New Recipe</title>
+      </Head>
+      <section className="text-gray-600 body-font px-4 ">
+        <div className="container  py-24 mx-auto flex flex-wrap flex-col w-fit min-h-[810px]">
+          <Steps updateCurrentStep={updateCurrentStep} />
 
-        <form className="flex flex-col gap-5 w-full  mt-10 flex-grow ">
-          {step === 1 && (
-            <>
-              <ImageInput getImage={getImage} image={recipe.image} />
-              <NewRecipeHeader
+          <form className="flex flex-col gap-5 w-full  mt-10 flex-grow ">
+            {step === 1 && (
+              <>
+                <ImageInput getImage={getImage} image={recipe.image} />
+                <NewRecipeHeader
+                  recipe={recipe}
+                  getAboutRecipe={getAboutRecipe}
+                  getRecipeName={getRecipeName}
+                />
+              </>
+            )}
+            {step === 2 && (
+              <NewRecipeDetails
                 recipe={recipe}
-                getAboutRecipe={getAboutRecipe}
-                getRecipeName={getRecipeName}
+                getMinutes={getMinutes}
+                getHours={getHours}
+                getType={getType}
+                getDifficulty={getDifficulty}
               />
-            </>
-          )}
-          {step === 2 && (
-            <NewRecipeDetails
+            )}
+            {step === 3 && <IngredientsAndMethod />}
+            {step === 4 && <RecipeDetails recipe={recipe} />}
+            <FormButtons
+              nextPage={nextPage}
+              previousPage={previousPage}
+              step={step}
               recipe={recipe}
-              getMinutes={getMinutes}
-              getHours={getHours}
-              getType={getType}
-              getDifficulty={getDifficulty}
+              showModal={showModal}
+              closeModal={closeModal}
+              addNewRecipe={addNewRecipe}
+              loading={loading}
             />
-          )}
-          {step === 3 && <IngredientsAndMethod />}
-          {step === 4 && <RecipeDetails recipe={recipe} />}
-          <FormButtons
-            nextPage={nextPage}
-            previousPage={previousPage}
-            step={step}
-            recipe={recipe}
-            showModal={showModal}
-            closeModal={closeModal}
-            addNewRecipe={addNewRecipe}
-            loading={loading}
-          />
-        </form>
-      </div>
-    </section>
+          </form>
+        </div>
+      </section>
+    </>
   );
 };
 

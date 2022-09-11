@@ -2,6 +2,7 @@ import Hero from "../components/Hero";
 import LatestRecipies from "../components/LatestRecipies";
 import mongoose from "mongoose";
 //import RecipeModel from "../store/newRecipeSchema";
+import Head from "next/head";
 import RecipeModel from "../store/recipeSchema";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
@@ -14,6 +15,13 @@ export default function Home({ allRecipes }) {
   }, [data]);
   return (
     <>
+      <Head>
+        <title>Food Recipes</title>
+        <meta
+          name="description"
+          content="Food Recipes is here to help you cook delicious meals with less stress and more joy. Find the best recipe ideas discover the one that fit your eating preferences, needs, and more. Cook with confidence. Enjoy your food."
+        />
+      </Head>
       <Hero />
       <LatestRecipies recipes={recipes} />
     </>

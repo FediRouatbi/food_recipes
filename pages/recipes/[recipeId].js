@@ -2,8 +2,16 @@ import React from "react";
 import mongoose from "mongoose";
 import RecipeModel from "../../store/recipeSchema";
 import AllAboutRecipe from "../../components/AllAboutRecipe";
+import Head from "next/head";
 const RecipeDetails = ({ data }) => {
-  return <AllAboutRecipe recipe={data} />;
+  return (
+    <>
+      <Head>
+        <title>{data.name}</title>
+      </Head>
+      <AllAboutRecipe recipe={data} />
+    </>
+  );
 };
 export async function getStaticPaths() {
   await mongoose.connect(process.env.MONGO_URL);

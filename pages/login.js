@@ -5,6 +5,7 @@ import {
   googleLogin,
 } from "../store/firebaseFunctions";
 import { useRouter } from "next/router";
+import Head from "next/head";
 const Login = () => {
   const pushTo = useRouter().push;
   const loginHandler = async (email, password) => {
@@ -32,11 +33,15 @@ const Login = () => {
     }
   };
   return (
+    <>
+    <Head>
+    <title>Login</title>
+  </Head>
     <LoginForm
       loginHandler={loginHandler}
       googleLoginHandler={googleLoginHandler}
       githubLoginHandler={githubLoginHandler}
-    />
+    /></>
   );
 };
 
